@@ -1,8 +1,7 @@
 import 'package:basic_ecommerce_app/Controller/interceptors.dart';
-import 'package:basic_ecommerce_app/Model/productlist.dart';
+import 'package:basic_ecommerce_app/Model/product_list.dart';
 import 'package:basic_ecommerce_app/Utils/baseURL.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
 class HomeRepo {
   Dio dio = Dio();

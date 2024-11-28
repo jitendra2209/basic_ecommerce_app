@@ -1,29 +1,21 @@
 import 'package:basic_ecommerce_app/Controller/login_controller.dart';
-import 'package:basic_ecommerce_app/View/signup.dart';
+import 'package:basic_ecommerce_app/View/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  final LoginController loginController = Get.put(LoginController());
-
-  @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final LoginController loginController = Get.put(LoginController());
+    final height = Get.height;
+    final width = Get.width;
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Form(
+            key: loginController.formKey,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Column(
@@ -40,14 +32,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  TextField(
-                    controller: emailController,
+                  TextFormField(
+                    controller: loginController.emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(
                         hintText: "Enter the E-mail",
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30.0),
                             borderSide: const BorderSide(
                               color: Color.fromARGB(255, 0, 0, 0),
+                              width: 1.0,
+                            )),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            borderSide: const BorderSide(
+                              color: Colors.red,
                               width: 1.0,
                             )),
                         prefixIcon: const Icon(Icons.mail),
@@ -61,8 +65,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 15.0,
                   ),
-                  TextField(
-                    controller: passwordController,
+                  TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                    controller: loginController.passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         hintText: "Enter the Password",
@@ -70,6 +80,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(30.0),
                             borderSide: const BorderSide(
                               color: Color.fromARGB(255, 0, 0, 0),
+                              width: 1.0,
+                            )),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            borderSide: const BorderSide(
+                              color: Colors.red,
                               width: 1.0,
                             )),
                         prefixIcon: const Icon(Icons.password),
@@ -93,9 +109,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: height * 0.03,
                   ),
                   ElevatedButton(
-                    onPressed: () => loginController.onLogin(
-                        emailController.text.trim(),
-                        passwordController.text.trim()),
+                    onPressed: () {
+                      loginController.formKey.currentState?.validate();
+                      loginController.onLogin(
+                          loginController.emailController.text.trim(),
+                          loginController.passwordController.text.trim());
+                    },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(width * 0.4, 40.0),
                       backgroundColor: Colors.indigo,

@@ -1,11 +1,15 @@
 import 'package:basic_ecommerce_app/Controller/preferences.dart';
 import 'package:basic_ecommerce_app/Utils/api_integration.dart';
 import 'package:basic_ecommerce_app/Utils/baseURL.dart';
-import 'package:basic_ecommerce_app/View/home.dart';
+import 'package:basic_ecommerce_app/View/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   void onLogin(String? userName, String? passWord) async {
     if (userName!.isEmpty || passWord!.isEmpty) {
       Get.snackbar('Error', 'Please enter both email and password',
@@ -29,5 +33,12 @@ class LoginController extends GetxController {
     } catch (e) {
       Get.snackbar("Error", "'Error: ${e.toString()}'");
     }
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

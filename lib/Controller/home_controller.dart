@@ -1,6 +1,5 @@
-import 'package:basic_ecommerce_app/Controller/homecontroller.dart';
-import 'package:basic_ecommerce_app/Model/productlist.dart';
-import 'package:flutter/material.dart';
+import 'package:basic_ecommerce_app/Controller/home_repository.dart';
+import 'package:basic_ecommerce_app/Model/product_list.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {

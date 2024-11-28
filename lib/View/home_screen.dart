@@ -1,8 +1,8 @@
-import 'package:basic_ecommerce_app/Controller/homeProvider.dart';
+import 'package:basic_ecommerce_app/Controller/home_controller.dart';
 import 'package:basic_ecommerce_app/Controller/preferences.dart';
-import 'package:basic_ecommerce_app/Model/productlist.dart';
-import 'package:basic_ecommerce_app/View/login.dart';
-import 'package:basic_ecommerce_app/View/productscreen.dart';
+import 'package:basic_ecommerce_app/Model/product_list.dart';
+import 'package:basic_ecommerce_app/View/login_screen.dart';
+import 'package:basic_ecommerce_app/View/product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                   return homeController.isLoading.value
                       ? ListView.builder(
                           itemCount: 7,
-                          itemBuilder: (context, index) => shimmerCard(),
+                          itemBuilder: (context, index) => const ShimmarCard(),
                         )
                       : ListView.builder(
                           itemCount: homeController.productList?.length,
@@ -222,49 +222,54 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-shimmerCard() {
-  return Card(
-      color: Colors.white.withOpacity(.9),
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(10),
-        leading: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            width: 60,
-            height: 60,
-            color: Colors.white,
-          ),
-        ),
-        title: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 5.0, bottom: 8.0),
+class ShimmarCard extends StatelessWidget {
+  const ShimmarCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        color: Colors.white.withOpacity(.9),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(10),
+          leading: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
             child: Container(
-              height: 15,
+              width: 60,
+              height: 60,
               color: Colors.white,
-              margin: const EdgeInsets.only(bottom: 5),
             ),
           ),
-        ),
-        subtitle: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            height: 10,
-            color: Colors.white,
+          title: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 8.0),
+              child: Container(
+                height: 15,
+                color: Colors.white,
+                margin: const EdgeInsets.only(bottom: 5),
+              ),
+            ),
           ),
-        ),
-        trailing: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-          child: Container(
-            width: 40,
-            height: 20,
-            color: Colors.white,
+          subtitle: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              height: 10,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ));
+          trailing: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 40,
+              height: 20,
+              color: Colors.white,
+            ),
+          ),
+        ));
+  }
 }

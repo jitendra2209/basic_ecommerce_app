@@ -1,10 +1,10 @@
-import 'package:basic_ecommerce_app/Controller/homecontroller.dart';
-import 'package:basic_ecommerce_app/Model/productlist.dart';
+import 'package:basic_ecommerce_app/Controller/home_repository.dart';
+import 'package:basic_ecommerce_app/Model/product_list.dart';
 import 'package:dio/dio.dart';
 
 import 'package:get/get.dart';
 
-class productDetailController extends GetxController {
+class ProductDetailController extends GetxController {
   Dio dio = Dio();
 
   Rx<Products>? productDetails = Products().obs;

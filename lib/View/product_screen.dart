@@ -1,14 +1,14 @@
-import 'package:basic_ecommerce_app/Controller/productdetail.dart';
+import 'package:basic_ecommerce_app/Controller/product_detail.dart';
 
-import 'package:basic_ecommerce_app/Model/productlist.dart';
+import 'package:basic_ecommerce_app/Model/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductScreen extends StatelessWidget {
   String? id;
   ProductScreen({super.key, required this.id});
-  final productDetailController productController =
-      Get.put(productDetailController());
+  final ProductDetailController productController =
+      Get.put(ProductDetailController());
 
   @override
   Widget build(BuildContext context) {

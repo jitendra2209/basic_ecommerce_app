@@ -1,6 +1,4 @@
-import 'package:basic_ecommerce_app/Controller/homeProvider.dart';
-import 'package:basic_ecommerce_app/Controller/productdetail.dart';
-import 'package:basic_ecommerce_app/View/splashscreen.dart';
+import 'package:basic_ecommerce_app/View/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    // return MultiProvider(
-    //     // providers: [
-    //     //   ChangeNotifierProvider(
-    //     //     create: (_) => HomeController()..fetchProducts(),
-    //     //   ),
-    //     //   ChangeNotifierProvider(create: (_) => productDetailProvider()),
-    //     // ],
-    //     builder: (context, _) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,

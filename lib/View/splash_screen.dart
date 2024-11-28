@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'package:basic_ecommerce_app/Bindings/login_binding.dart';
 import 'package:basic_ecommerce_app/Controller/preferences.dart';
 import 'package:basic_ecommerce_app/Utils/baseURL.dart';
-import 'package:basic_ecommerce_app/View/home.dart';
-import 'package:basic_ecommerce_app/View/login.dart';
+import 'package:basic_ecommerce_app/View/home_screen.dart';
+import 'package:basic_ecommerce_app/View/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,9 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
         ""; //storing token into global TOKEN value to access in another screen
     Future.delayed(const Duration(seconds: 3), () {
       if (loggedIn) {
-        Get.to(HomeScreen());
+        Get.to(() => HomeScreen());
       } else {
-        Get.to(const LoginScreen());
+        Get.to(() => const LoginScreen());
       }
     });
   }
